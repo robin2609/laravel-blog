@@ -12,40 +12,16 @@
         </div>
     </div>
     <!-- end of header .row -->
-
     <div class="row">
         <div class="col-md-8">
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis amet tenetur eum, consequuntur assumenda officiis quidem omnis placeat. Sequi ex fugiat reiciendis at eligendi inventore ad, odio magnam velit doloribus...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis amet tenetur eum, consequuntur assumenda officiis quidem omnis placeat. Sequi ex fugiat reiciendis at eligendi inventore ad, odio magnam velit doloribus...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis amet tenetur eum, consequuntur assumenda officiis quidem omnis placeat. Sequi ex fugiat reiciendis at eligendi inventore ad, odio magnam velit doloribus...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis amet tenetur eum, consequuntur assumenda officiis quidem omnis placeat. Sequi ex fugiat reiciendis at eligendi inventore ad, odio magnam velit doloribus...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
+            @foreach($posts as $post)
+                <div class="post">
+                    <h3>{{ $post->title }}</h3>
+                    <p>{{ str_limit($post->body, $limit = 300, $end = '...') }}</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+                <hr>
+            @endforeach
         </div>
 
         <div class="col-md-3 col-md-offset-1">
