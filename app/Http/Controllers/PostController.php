@@ -46,6 +46,7 @@ class PostController extends Controller
         // validate the data
         $this->validate($request, array(
             'title' => 'required|unique:posts|max:255',
+            'slug' => 'required|alpha_dash|max:255|unique:posts,slug',
             'body' => 'required'
         ));
 
@@ -53,6 +54,7 @@ class PostController extends Controller
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
 
         $post->save();
@@ -99,16 +101,25 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //Validate the data
-        $this->validate($request, array(
+        $post = Post::find($id);
+        if($request->input('slug') == $post->slug ) {
+            $this->validate($request, array(
             'title' => 'required|max:255',
             'body' => 'required'
+            ));
+        } else {
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|max:255|unique:posts,slug',
+            'body' => 'required'
         ));
-
+        }
         //Save the data to the database
-        $post = Post::find($id);
 
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
+
 
         $post->save();
         //set flash data with success message

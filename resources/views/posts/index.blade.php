@@ -19,6 +19,7 @@
                 <thead>
                     <th>#</th>
                     <th>Title</th>
+                    <th>Slug</th>
                     <th>Body</th>
                     <th>Created at</th>
                     <th></th>
@@ -28,6 +29,7 @@
                     <tr>
                         <th>{{ $post->id }}</th>
                         <td>{{ $post->title }}</td>
+                        <td>{{ $post->slug }}</td>
                         <td>{{ str_limit($post->body, $limit = 50, $end = '...') }}</td>
                         <td>{{ date( 'M j, Y H:i', strtotime($post->created_at)) }}</td>
                         <td>
